@@ -1,4 +1,3 @@
-Jekinsfile (Declarative Pipeline)
 pipeline {
     agent { docker 'ruby' }
     stages {
