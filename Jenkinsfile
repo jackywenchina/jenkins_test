@@ -1,13 +1,15 @@
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage('Deploy') {
             steps {
-		sh 'echo "Hello World"'
-		sh '''
-		   echo "Multiline shell steps works too"
-		   ls -lah
-            	'''
+		retry(3) {
+		    sh 'echo "Hello World"'
+		}
+		
+		timeout(time: 3, unit: 'MINUTES') {
+		    sh 'echo "1"'
+		}
 	     }
         }
     }
