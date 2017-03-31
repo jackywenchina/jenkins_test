@@ -8,7 +8,7 @@ pipeline {
 		    sh 'node --version'
 		}
 	     }
-        }
+        
 
 
     }
