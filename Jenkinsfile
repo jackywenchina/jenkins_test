@@ -1,15 +1,23 @@
+#!groovy
 pipeline {
-    agent {
-		/Applications/Docker.app/Contents/Resources/bin/docker { image 'hello-world'  }
-	}
-    stages {
-        stage('Test') {
-            steps {
-		    sh 'node --version'
+	agent any
+
+	stages {
+		stage('Build') {
+			steps {
+				echo 'Building..'
+			}
 		}
-	     }
-        
 
-
-    }
+		stage('Test') {
+			steps {
+				echo 'Testing..'
+			}
+		}
+		stage('Deploy') {
+			steps {
+				echo 'Deploying...'
+			}
+		}
+	}
 }
