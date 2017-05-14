@@ -1,16 +1,13 @@
-#!groovy
 pipeline {
   agent any
-
   parameters {
-    string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
   }
-
-	stages {
+  stages {
     stage('Example') {
       steps {
-        echo "${params.Greeting} World!"
+        echo "Hello ${params.PERSON}"
       }
     }
-	}
+  }
 }
