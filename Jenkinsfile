@@ -1,11 +1,10 @@
-Jenkinsfile (Declarative Pipeline)
 pipeline {
-	agent any
-	stages {
-		stage('build') {
-			steps {
-				sh 'echo "Hello World"'
-			}
-		}
-	}
+    agent { docker 'ruby' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'ruby --version'
+            }
+        }
+    }
 }
