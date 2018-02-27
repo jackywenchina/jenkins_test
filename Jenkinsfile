@@ -1,14 +1,10 @@
 pipeline {
   agent any
 
-  environment {
-    CC = 'clang'
-  }
-
   stages {
-    stage('Example') {
+    stage('Example stage 1') {
       environment {
-        DEBUG_FLAGS = '-g'
+        ADMIN = credentials('admin')
       }
 
       steps {
