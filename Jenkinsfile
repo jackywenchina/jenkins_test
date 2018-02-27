@@ -1,14 +1,14 @@
 pipeline {
   agent any
 
-  stages {
-    stage('Example stage 1') {
-      environment {
-        ADMIN = credentials('dd53adef-f3d2-4f5b-a815-272675c3cba7')
-      }
+  parameters {
+    string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+  }
 
+  stages {
+    stage('Example') {
       steps {
-        sh 'printenv'
+        echo "${params.Greeting} World!"
       }
     }
   }
