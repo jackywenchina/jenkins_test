@@ -1,15 +1,29 @@
 pipeline {
   agent any
-
-  parameters {
-    string(name: 'Greeting', defaultValue: 'Hello', description: 'How should I greet the world?')
+  stages {
+    stage('No-op') {
+      steps {
+        sh 'ls'
+      }
+    }
   }
 
-  stages {
-    stage('Example') {
-      steps {
-        echo "${params.Greeting} World!"
-      }
+  post {
+    always {
+      echo 'One way or another, I have finished'
+      deleteDir() /* clean up our workspace */
+    }
+    success {
+      echo 'I succeeded!'
+    }
+    unstable {
+      echo 'I am unstable :/'
+    }
+    failure {
+      echo 'I failed :('
+    }
+    changed {
+      echo 'Things were different before...'
     }
   }
 }
