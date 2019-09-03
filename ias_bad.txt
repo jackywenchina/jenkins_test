@@ -1,0 +1,97 @@
+{
+    "user": {
+        "mappings": [
+            {
+                "sourcePath": "$",
+                "targetPath": "$"
+            },
+            {
+                "sourcePath": "$.id",
+                "targetVariable": "entityIdSourceSystem"
+            },
+            {
+                "sourcePath": "$.userName",
+                "optional": true,
+                "targetPath": "$.externalId"
+            },
+            {
+                "sourcePath": "$.id",
+                "targetPath": "$.userName"
+            },
+            {
+                "targetPath": "$.id",
+                "type": "remove"
+            },
+            {
+                "targetPath": "$.companyRelationship",
+                "type": "remove"
+            },
+            {
+                "targetPath": "$.passwordStatus",
+                "type": "remove"
+            },
+            {
+                "targetPath": "$.sourceSystem",
+                "type": "remove"
+            },
+            {
+                "targetPath": "$.meta",
+                "type": "remove"
+            },
+            {
+                "targetPath": "$.mailVerified",
+                "type": "remove"
+            },
+            {
+                "targetPath": "$.groups[*].display",
+                "type": "remove"
+            },
+            {
+                "condition": "$.displayName EMPTY true",
+                "targetPath": "$.displayName",
+                "type": "remove"
+            },
+            {
+                "sourcePath": "$.timeZone",
+                "optional": true,
+                "targetPath": "$.timezone"
+            }
+        ]
+    },
+    "group": {
+        "ignore": true,
+        "mappings": [
+            {
+                "sourcePath": "$.id",
+                "targetVariable": "entityIdSourceSystem"
+            },
+            {
+                "constant": "urn:ietf:params:scim:schemas:core:2.0:Group",
+                "targetPath": "$.schemas[0]"
+            },
+            {
+                "sourcePath": "$['urn:sap:cloud:scim:schemas:extension:custom:2.0:Group']['name']",
+                "targetPath": "$.displayName"
+            },
+            {
+                "sourcePath": "$.members",
+                "preserveArrayWithSingleElement": true,
+                "optional": true,
+                "targetPath": "$.members"
+            },
+            {
+                "constant": "urn:sap:cloud:scim:schemas:extension:custom:2.0:Group",
+                "targetPath": "$.schemas[1]"
+            },
+            {
+                "sourcePath": "$['urn:sap:cloud:scim:schemas:extension:custom:2.0:Group']['name']",
+                "targetPath": "$['urn:sap:cloud:scim:schemas:extension:custom:2.0:Group']['name']"
+            },
+            {
+                "sourcePath": "$['urn:sap:cloud:scim:schemas:extension:custom:2.0:Group']['description']",
+                "optional": true,
+                "targetPath": "$['urn:sap:cloud:scim:schemas:extension:custom:2.0:Group']['description']"
+            }
+        ]
+    }
+}
